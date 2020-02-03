@@ -1,3 +1,4 @@
+require 'pry'
 class Artist
   extend Concerns::Findable
 
@@ -10,13 +11,13 @@ class Artist
     @name = name
     @songs = []
   end
-
+  
   def self.all
     @@all
   end
 
   def self.destroy_all
-    all.clear
+    self.all.clear
   end
 
   def save
@@ -24,7 +25,8 @@ class Artist
   end
 
   def self.create(name)
-    artist = new(name)
+    artist = self.new(name)
+    binding.pry
     artist.save
     artist
 
